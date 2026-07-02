@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>NutriRaíz · Naturalmente mejor</title>
+<meta name="theme-color" content="#2F5233">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Caveat:wght@600&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+:root{
+  --verde:#2F5233; --verde-osc:#22402A; --verde-suave:#4A7050;
+  --crema:#F6F0E2; --papel:#FCFAF4; --linea:#E4DCC8;
+  --nuez:#8B5E34; --dorado:#B9954A; --terra:#B5673B; --tinta:#2A2620;
+  --ok:#3E7A47; --alerta:#B5432F;
+  --radio:14px; --sombra:0 6px 24px rgba(47,82,51,.10);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Nunito Sans',system-ui,sans-serif;background:var(--crema);color:var(--tinta);font-size:15.5px;line-height:1.5}
+h1,h2,h3{font-family:'Marcellus',serif;font-weight:400;letter-spacing:.03em}
+.script{font-family:'Caveat',cursive;color:var(--nuez)}
+button{font:inherit;cursor:pointer;border:none;border-radius:10px}
+input,select,textarea{font:inherit;width:100%;padding:10px 12px;border:1.5px solid var(--linea);border-radius:10px;background:#fff;color:var(--tinta)}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid var(--verde-suave);outline-offset:1px}
+a{color:var(--verde)}
+.oculto{display:none!important}
+img{max-width:100%;display:block}
+
+/* ---------- Cabecera ---------- */
+header{background:var(--verde);color:#F3EEDC;position:sticky;top:0;z-index:40;box-shadow:0 2px 10px rgba(0,0,0,.15)}
+.barra{max-width:1060px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:14px}
+.marca{display:flex;flex-direction:column;line-height:1.05;cursor:pointer}
+.marca b{font-family:'Marcellus',serif;font-size:1.25rem;letter-spacing:.12em;font-weight:400}
+.marca small{font-size:.58rem;letter-spacing:.28em;opacity:.85;text-transform:uppercase}
+nav{margin-left:auto;display:flex;gap:4px;align-items:center}
+nav button{background:transparent;color:#F3EEDC;padding:8px 11px;border-radius:9px;font-weight:700;font-size:.88rem}
+nav button.activo,nav button:hover{background:rgba(255,255,255,.14)}
+#btnCarrito{position:relative}
+#carritoN{position:absolute;top:-2px;right:0;background:var(--dorado);color:#fff;font-size:.66rem;font-weight:800;border-radius:99px;padding:1px 6px;min-width:17px}
+
+main{max-width:1060px;margin:0 auto;padding:22px 16px 90px}
+
+/* ---------- Landing ---------- */
+.heroBanner{position:relative;border-radius:18px;overflow:hidden;box-shadow:var(--sombra);margin-bottom:26px}
+.heroBanner img{width:100%;height:min(46vw,340px);object-fit:cover}
+.heroBanner .velo{position:absolute;inset:0;background:linear-gradient(90deg,rgba(34,64,42,.88) 0%,rgba(34,64,42,.55) 55%,rgba(34,64,42,.05) 100%);display:flex;flex-direction:column;justify-content:center;padding:26px;color:#F6F0E2}
+.heroBanner h1{font-size:clamp(1.4rem,4.4vw,2.5rem);max-width:520px;line-height:1.15}
+.heroBanner .script{color:#E9CFA0;font-size:clamp(1.1rem,3vw,1.6rem);margin:6px 0 16px}
+.beneficios{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-bottom:30px}
+.beneficio{background:var(--papel);border:1px solid var(--linea);border-radius:var(--radio);padding:18px;box-shadow:var(--sombra)}
+.beneficio b{display:block;font-family:'Marcellus',serif;font-size:1.05rem;color:var(--verde-osc);margin-bottom:4px}
+.beneficio small{color:#6a6252;font-size:.86rem}
+.beneficio .ico{font-size:1.5rem}
+.historia{display:flex;gap:24px;align-items:center;background:var(--papel);border:1px solid var(--linea);border-radius:18px;box-shadow:var(--sombra);padding:24px;margin-bottom:30px;flex-wrap:wrap}
+.historia img{width:230px;border-radius:14px;flex:none}
+.historia div{flex:1;min-width:250px}
+.historia h2{color:var(--verde-osc);margin-bottom:10px}
+.historia p{color:#4d4638;font-size:.94rem;margin-bottom:10px}
+.cintaClub{background:var(--verde);color:#F3EEDC;border-radius:18px;padding:22px 26px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:30px}
+.cintaClub .pct{font-family:'Marcellus',serif;font-size:2.6rem;color:#E9CFA0;line-height:1}
+.cintaClub div{flex:1;min-width:230px}
+.cintaClub b{font-size:1.05rem}
+.cintaClub small{display:block;opacity:.9;margin-top:2px}
+
+/* ---------- Tienda ---------- */
+.hero{display:flex;flex-wrap:wrap;align-items:end;gap:8px 18px;margin-bottom:18px}
+.hero h1{font-size:clamp(1.5rem,4vw,2.1rem);color:var(--verde-osc)}
+.hero .script{font-size:clamp(1.15rem,3vw,1.45rem)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:16px}
+.card{background:var(--papel);border:1px solid var(--linea);border-radius:var(--radio);box-shadow:var(--sombra);overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:transform .15s}
+.card:hover{transform:translateY(-3px)}
+.card .foto{position:relative}
+.card .foto img{width:100%;aspect-ratio:1.15;object-fit:cover}
+.card .chip{position:absolute;top:10px;left:10px;font-size:.66rem;font-weight:800;letter-spacing:.14em;padding:4px 12px;border-radius:99px;color:#fff}
+.chip.verde{background:var(--verde)} .chip.terra{background:var(--terra)} .chip.dorado{background:var(--dorado)}
+.card h3{font-size:1.15rem;color:var(--verde-osc);padding:12px 16px 0}
+.card .desc{padding:4px 16px 0;font-size:.85rem;color:#5a5344;flex:1}
+.card .pie{display:flex;align-items:center;justify-content:space-between;padding:12px 16px 16px}
+.precio{font-family:'Marcellus',serif;font-size:1.25rem;color:var(--verde-osc)}
+.peso{font-size:.74rem;color:#8a8272}
+.btn{background:var(--verde);color:#fff;font-weight:800;padding:10px 16px}
+.btn:hover{background:var(--verde-osc)}
+.btn.secundario{background:transparent;color:var(--verde);border:1.5px solid var(--verde)}
+.btn.dorado{background:var(--dorado)}
+.btn.crema{background:#F3EEDC;color:var(--verde-osc)}
+.btn.mini{padding:6px 10px;font-size:.82rem}
+
+/* ---------- Modal detalle ---------- */
+#modal{position:fixed;inset:0;background:rgba(34,40,32,.55);z-index:60;display:flex;align-items:flex-end;justify-content:center;padding:0}
+#modal .caja{background:var(--papel);border-radius:20px 20px 0 0;max-width:640px;width:100%;max-height:92vh;overflow-y:auto;position:relative}
+@media(min-width:640px){#modal{align-items:center;padding:20px}#modal .caja{border-radius:20px}}
+#modal .cerrar{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.45);color:#fff;width:34px;height:34px;border-radius:50%;font-size:1.1rem;z-index:2}
+#modal .foto img{width:100%;max-height:300px;object-fit:cover}
+#modal .cuerpo{padding:20px 22px 26px}
+#modal h2{color:var(--verde-osc)}
+.fichas{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.ficha{background:#fff;border:1px solid var(--linea);border-radius:10px;padding:10px 12px}
+.ficha small{display:block;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#8a8272;font-weight:800}
+.ficha b{font-size:.88rem;color:var(--verde-osc)}
+.bondad{background:#EEF4EC;border-left:4px solid var(--verde-suave);border-radius:0 10px 10px 0;padding:10px 14px;font-size:.9rem;color:#3d4a3c;margin-bottom:14px}
+.formato{display:flex;align-items:center;justify-content:space-between;border:1.5px solid var(--linea);border-radius:12px;padding:12px 14px;margin-bottom:8px;background:#fff}
+.formato b{font-family:'Marcellus',serif;font-size:1.1rem;color:var(--verde-osc)}
+.formato small{display:block;color:#8a8272;font-size:.76rem}
+
+/* ---------- Paneles / formularios ---------- */
+.panel{background:var(--papel);border:1px solid var(--linea);border-radius:var(--radio);box-shadow:var(--sombra);padding:20px;max-width:580px;margin:0 auto}
+.panel.ancho{max-width:none}
+.panel h2{color:var(--verde-osc);margin-bottom:14px}
+.campo{margin-bottom:12px}
+.campo label{display:block;font-size:.8rem;font-weight:800;color:var(--verde);margin-bottom:4px;letter-spacing:.04em}
+.fila{display:flex;gap:10px;flex-wrap:wrap}
+.fila>*{flex:1;min-width:130px}
+.nota{font-size:.83rem;color:#6a6252}
+.radio-pago{display:flex;gap:10px;flex-wrap:wrap}
+.radio-pago label{flex:1;min-width:150px;border:1.5px solid var(--linea);border-radius:10px;padding:12px;cursor:pointer;background:#fff;font-size:.88rem}
+.radio-pago input{width:auto;margin-right:8px}
+.radio-pago label:has(input:checked){border-color:var(--verde);background:#EEF4EC;font-weight:700}
+.banco{background:#EEF4EC;border:1.5px dashed var(--verde-suave);border-radius:10px;padding:12px;font-size:.86rem;margin-top:10px}
+.dirBox{background:#fff;border:1.5px solid var(--linea);border-radius:12px;padding:12px 14px;display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:.9rem}
+.desglose{border-top:1.5px dashed var(--linea);margin-top:14px;padding-top:12px;font-size:.92rem}
+.desglose div{display:flex;justify-content:space-between;padding:3px 0}
+.desglose .dcto{color:var(--ok);font-weight:700}
+.desglose .tot{font-family:'Marcellus',serif;font-size:1.2rem;color:var(--verde-osc);border-top:1px solid var(--linea);margin-top:6px;padding-top:8px}
+
+/* ---------- Carrito ---------- */
+.item-carrito{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--linea)}
+.item-carrito .nom{flex:1;font-weight:700}
+.qtyC{display:flex;align-items:center;gap:6px}
+.qtyC button{width:28px;height:28px;border-radius:8px;background:var(--crema);border:1px solid var(--linea);font-weight:800}
+
+/* ---------- Pedidos ---------- */
+.orden{background:var(--papel);border:1px solid var(--linea);border-radius:var(--radio);box-shadow:var(--sombra);padding:16px 18px;margin-bottom:14px}
+.orden .cab{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;font-size:.85rem;color:#6a6252}
+.orden .cab b{color:var(--verde-osc);font-size:1rem}
+.rama{display:flex;align-items:center;margin:16px 2px 6px}
+.rama .hoja{width:15px;height:15px;border-radius:50% 2px 50% 50%;transform:rotate(45deg);background:#DDD5C0;border:2px solid #cfc6ad;flex:none}
+.rama .tallo{flex:1;height:3px;background:#DDD5C0;margin:0 -1px}
+.rama .hoja.hecho{background:var(--verde);border-color:var(--verde-osc)}
+.rama .tallo.hecho{background:var(--verde)}
+.rama-txt{display:flex;justify-content:space-between;font-size:.6rem;color:#8a8272;font-weight:700;text-transform:uppercase}
+.rama-txt span{width:20%;text-align:center}
+.rama-txt span:first-child{text-align:left}.rama-txt span:last-child{text-align:right}
+.estado-pill{font-size:.72rem;font-weight:800;padding:3px 10px;border-radius:99px;background:var(--crema);color:var(--verde);border:1px solid var(--linea)}
+.estado-pill.Cancelado{color:var(--alerta)}
+
+/* ---------- Admin ---------- */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+.tabs button{background:#fff;border:1.5px solid var(--linea);padding:8px 14px;font-weight:800;color:var(--verde);border-radius:99px;font-size:.86rem}
+.tabs button.activo{background:var(--verde);color:#fff;border-color:var(--verde)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:18px}
+.kpi{background:var(--papel);border:1px solid var(--linea);border-radius:12px;padding:14px}
+.kpi small{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:#8a8272;font-weight:800}
+.kpi b{display:block;font-family:'Marcellus',serif;font-size:1.3rem;color:var(--verde-osc);margin-top:4px}
+.kpi.destacado{background:var(--verde);border-color:var(--verde)}
+.kpi.destacado small{color:#cfe0cd}.kpi.destacado b{color:#fff}
+table{width:100%;border-collapse:collapse;background:var(--papel);border-radius:12px;overflow:hidden;font-size:.86rem}
+th{background:var(--verde);color:#fff;text-align:left;padding:9px 10px;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
+td{padding:9px 10px;border-bottom:1px solid var(--linea);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+td input{padding:6px 8px;max-width:110px}
+td select{padding:6px 8px;width:auto}
+.tabla-scroll{overflow-x:auto;border-radius:12px;box-shadow:var(--sombra)}
+.stock-bajo{color:var(--alerta);font-weight:800}
+.badge-demo{background:var(--dorado);color:#fff;font-size:.68rem;font-weight:800;padding:3px 10px;border-radius:99px;margin-left:8px;vertical-align:middle}
+
+#qrCaja{display:flex;flex-direction:column;align-items:center;gap:14px;padding:10px}
+#qrCanvas{background:#fff;padding:18px;border-radius:14px;border:1px solid var(--linea)}
+
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--verde-osc);color:#fff;padding:12px 20px;border-radius:12px;font-weight:700;opacity:0;transition:.25s;z-index:99;max-width:90vw;text-align:center}
+#toast.ver{opacity:1;transform:translateX(-50%) translateY(0)}
+#toast.error{background:var(--alerta)}
+
+footer{background:var(--verde);color:#E9E2CC;text-align:center;padding:26px 16px;font-size:.85rem}
+footer .script{color:#E9CFA0;font-size:1.25rem;display:block;margin-bottom:6px}
+@media(max-width:640px){
+  nav button{padding:8px 8px;font-size:.8rem}
+  .marca b{font-size:1.02rem}
+  main{padding:16px 12px 90px}
+  .fichas{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}.card:hover{transform:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="barra">
+    <div class="marca" onclick="ir('inicio')">
+      <b>NUTRIRAÍZ</b><small>Naturalmente mejor</small>
+    </div>
+    <nav>
+      <button data-v="inicio" onclick="ir('inicio')">Inicio</button>
+      <button data-v="tienda" onclick="ir('tienda')">Tienda</button>
+      <button data-v="pedidos" onclick="ir('pedidos')">Pedidos</button>
+      <button data-v="cuenta" id="btnCuenta" onclick="ir('cuenta')">Ingresar</button>
+      <button id="btnCarrito" onclick="ir('carrito')">🧺<span id="carritoN" class="oculto"></span></button>
+    </nav>
+  </div>
+</header>
+
+<main id="vista"></main>
+
+<footer>
+  <span class="script">Nutre tu cuerpo, cuida tu bienestar.</span>
+  <div>NUTRIRAÍZ · <span id="ftWsp"></span> · <a href="#" style="color:#E9CFA0" onclick="ir('admin');return false">Acceso administración</a></div>
+</footer>
+
+<div id="toast"></div>
+
+<script>
+/* ══════════════════════ CONFIGURACIÓN ══════════════════════
+   1) Pega la URL /exec de tu Apps Script. Vacía = MODO DEMO.
+   2) Ajusta WhatsApp y datos de transferencia.
+   3) Reglas comerciales (deben coincidir con Code.gs).       */
+const API_URL   = '';
+const WHATSAPP  = '56912345678';
+const BANCO = {
+  titular:'NutriRaíz SpA', rut:'77.777.777-7', banco:'Banco Estado',
+  tipo:'Cuenta Vista', numero:'12345678', email:'pagos@nutriraiz.cl'
+};
+const DESCUENTO_CLIENTE = 0.03;       // 3% clientes registrados
+const DESPACHO_GRATIS_DESDE = 30000;  // compras ≥ este monto
+const COMUNA_GRATIS = 'Macul';
+const RECARGO_RM = 3990;
+const ESTADOS = ['Recibido','Confirmado','En preparación','En despacho','Entregado'];
+
+const CIUDADES_RM = ['Santiago','Puente Alto','San Bernardo','Colina','Melipilla','Talagante','Peñaflor','Buin','Lampa','Otra'];
+const COMUNAS_RM = ['Macul','Santiago','Cerrillos','Cerro Navia','Conchalí','El Bosque','Estación Central','Huechuraba','Independencia','La Cisterna','La Florida','La Granja','La Pintana','La Reina','Las Condes','Lo Barnechea','Lo Espejo','Lo Prado','Maipú','Ñuñoa','Pedro Aguirre Cerda','Peñalolén','Providencia','Pudahuel','Quilicura','Quinta Normal','Recoleta','Renca','San Joaquín','San Miguel','San Ramón','Vitacura','Puente Alto','Pirque','San José de Maipo','Colina','Lampa','Tiltil','San Bernardo','Buin','Calera de Tango','Paine','Melipilla','Alhué','Curacaví','María Pinto','San Pedro','Talagante','El Monte','Isla de Maipo','Padre Hurtado','Peñaflor'];
+/* ════════════════════════════════════════════════════════════ */
+
+const $ = s => document.querySelector(s);
+const fmt = n => '$' + Math.round(Number(n)||0).toLocaleString('es-CL');
+const fmtKg = n => (Math.round(Number(n)*100)/100).toLocaleString('es-CL')+' kg';
+const fmtF = d => { const x=new Date(d); return isNaN(x)?'':x.toLocaleDateString('es-CL',{day:'2-digit',month:'short',year:'numeric'}); };
+const pesoTxt = g => g>=1000 ? (g/1000).toLocaleString('es-CL')+' kg' : g+' g';
+const CHIPS = {COLACIONES:'verde',DESAYUNO:'terra',FITNESS:'verde',FAMILIAR:'terra',PREMIUM:'dorado'};
+
+let session = JSON.parse(localStorage.getItem('nr_session')||'null');
+let cart    = JSON.parse(localStorage.getItem('nr_cart')||'[]');
+let PRODUCTS = [];
+
+function toast(m,e){ const t=$('#toast'); t.textContent=m; t.className='ver'+(e?' error':''); clearTimeout(t._to); t._to=setTimeout(()=>t.className='',2900); }
+function saveCart(){ localStorage.setItem('nr_cart',JSON.stringify(cart)); pintaCarritoN(); }
+function pintaCarritoN(){ const n=cart.reduce((s,i)=>s+i.qty,0); const b=$('#carritoN'); b.textContent=n; b.classList.toggle('oculto',n===0); }
+function setSession(s){ session=s; if(s) localStorage.setItem('nr_session',JSON.stringify(s)); else localStorage.removeItem('nr_session'); $('#btnCuenta').textContent=s? s.nombre.split(' ')[0] : 'Ingresar'; }
+function opts(arr,sel){ return arr.map(x=>`<option ${x===sel?'selected':''}>${x}</option>`).join(''); }
+
+/* Reglas comerciales compartidas (mismo cálculo que el backend) */
+function calcCarrito(comuna){
+  const subtotal = cart.reduce((s,i)=>s+i.precio*i.qty,0);
+  const descuento = session? Math.round(subtotal*DESCUENTO_CLIENTE) : 0;
+  const base = subtotal-descuento;
+  const despacho = (String(comuna||'').trim().toLowerCase()===COMUNA_GRATIS.toLowerCase() || base>=DESPACHO_GRATIS_DESDE) ? 0 : RECARGO_RM;
+  return {subtotal, descuento, despacho, total: base+despacho};
+}
+
+/* ══════════════════ CAPA DE DATOS (API / DEMO) ══════════════════ */
+async function api(action, data={}){
+  if(!API_URL) return demoApi(action, data);
+  const res = await fetch(API_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({action,...data})});
+  return res.json();
+}
+
+const SEED = {
+  productos:[
+    {id:'MIX-COL',nombre:'Mix Colaciones',etiqueta:'COLACIONES',descripcion:'Energía natural para tu día a día.',contenido:'Almendras, mix de semillas (zapallo, maravilla, girasol) y cranberries.',peso_g:750,precio:14990,imagen:'img/mix-colaciones.jpg',rendimiento:'1 persona / 1 mes',orientado:'Estudiantes y profesionales',porcion:'20 g diarios (1 puñado pequeño)',bondades:'Aporta energía sostenida y mejora la concentración durante la jornada.',formatos:[{peso_g:500,precio:9990},{peso_g:750,precio:14990}]},
+    {id:'MIX-DES',nombre:'Mix Desayuno',etiqueta:'DESAYUNO',descripcion:'Nutrición completa para comenzar bien el día.',contenido:'Nueces, chía, linaza, coco laminado y mix de semillas.',peso_g:1000,precio:16990,imagen:'img/mix-desayuno.jpg',rendimiento:'35 – 40 desayunos',orientado:'Familias y quienes parten temprano',porcion:'15–20 g con yogurt, fruta o avena',bondades:'Omega 3 y fibra que cuidan la salud cardiovascular desde la mañana.',formatos:[{peso_g:500,precio:8990},{peso_g:1000,precio:16990}]},
+    {id:'MIX-FIT',nombre:'Mix Fitness',etiqueta:'FITNESS',descripcion:'Rendimiento y recuperación para tu mejor versión.',contenido:'Almendras, maní, pasas y mix de semillas (zapallo, maravilla, girasol).',peso_g:1500,precio:23990,imagen:'img/mix-fitness.jpg',rendimiento:'40 – 50 colaciones',orientado:'Deportistas y vida activa',porcion:'20–25 g antes o después de entrenar',bondades:'Proteína vegetal y carbohidratos naturales para rendimiento y recuperación.',formatos:[{peso_g:500,precio:8490},{peso_g:1500,precio:23990}]},
+    {id:'MIX-FAM',nombre:'Mix Familiar',etiqueta:'FAMILIAR',descripcion:'Ideal para compartir en familia.',contenido:'Selección variada de frutos secos y semillas, pasas y arándanos.',peso_g:2500,precio:36990,imagen:'img/mix-familiar.jpg',rendimiento:'4 personas / 1 mes',orientado:'Familias',porcion:'20 g por persona al día',bondades:'Variedad que fortalece el sistema inmune y suma nutrientes esenciales al hogar.',formatos:[{peso_g:1000,precio:15490},{peso_g:2500,precio:36990}]},
+    {id:'MIX-PRE',nombre:'Mix Premium',etiqueta:'PREMIUM',descripcion:'Selección gourmet de frutos premium.',contenido:'Nueces, almendras, pecanas, pistachos, avellanas, castañas de cajú y pasas.',peso_g:1500,precio:31990,imagen:'img/mix-premium.jpg',rendimiento:'Regalo / consumo gourmet',orientado:'Regalos corporativos y ocasiones especiales',porcion:'20 g diarios (1 puñado pequeño)',bondades:'Selección premium rica en grasas saludables: un regalo con propósito.',formatos:[{peso_g:500,precio:11490},{peso_g:1500,precio:31990}]},
+  ],
+  insumos:[
+    {id:'INS-ALM',nombre:'Almendras',stock_kg:5,costo_por_kg:9500,stock_minimo_kg:1},
+    {id:'INS-NUE',nombre:'Nueces',stock_kg:5,costo_por_kg:11000,stock_minimo_kg:1},
+    {id:'INS-MAN',nombre:'Maní',stock_kg:5,costo_por_kg:3500,stock_minimo_kg:1},
+    {id:'INS-PAS',nombre:'Pasas',stock_kg:5,costo_por_kg:3200,stock_minimo_kg:1},
+    {id:'INS-CRA',nombre:'Cranberries',stock_kg:3,costo_por_kg:6500,stock_minimo_kg:0.5},
+    {id:'INS-SEM',nombre:'Mix de semillas',stock_kg:5,costo_por_kg:4000,stock_minimo_kg:1},
+    {id:'INS-CHI',nombre:'Chía',stock_kg:2,costo_por_kg:4500,stock_minimo_kg:0.5},
+    {id:'INS-LIN',nombre:'Linaza',stock_kg:2,costo_por_kg:2500,stock_minimo_kg:0.5},
+    {id:'INS-COC',nombre:'Coco laminado',stock_kg:2,costo_por_kg:5000,stock_minimo_kg:0.5},
+    {id:'INS-PEC',nombre:'Pecanas',stock_kg:2,costo_por_kg:14000,stock_minimo_kg:0.5},
+    {id:'INS-PIS',nombre:'Pistachos',stock_kg:2,costo_por_kg:13000,stock_minimo_kg:0.5},
+    {id:'INS-AVE',nombre:'Avellanas',stock_kg:2,costo_por_kg:12000,stock_minimo_kg:0.5},
+    {id:'INS-CAJ',nombre:'Castañas de cajú',stock_kg:2,costo_por_kg:9000,stock_minimo_kg:0.5},
+    {id:'INS-ARA',nombre:'Arándanos deshidratados',stock_kg:2,costo_por_kg:8000,stock_minimo_kg:0.5},
+  ],
+  recetas:[
+    ['MIX-COL','INS-ALM',200],['MIX-COL','INS-SEM',200],['MIX-COL','INS-CRA',150],['MIX-COL','INS-NUE',200],
+    ['MIX-DES','INS-NUE',300],['MIX-DES','INS-CHI',200],['MIX-DES','INS-LIN',200],['MIX-DES','INS-COC',100],['MIX-DES','INS-SEM',200],
+    ['MIX-FIT','INS-ALM',400],['MIX-FIT','INS-MAN',500],['MIX-FIT','INS-PAS',300],['MIX-FIT','INS-SEM',300],
+    ['MIX-FAM','INS-ALM',500],['MIX-FAM','INS-NUE',400],['MIX-FAM','INS-MAN',600],['MIX-FAM','INS-PAS',500],['MIX-FAM','INS-SEM',300],['MIX-FAM','INS-ARA',200],
+    ['MIX-PRE','INS-NUE',300],['MIX-PRE','INS-ALM',300],['MIX-PRE','INS-PEC',200],['MIX-PRE','INS-PIS',200],['MIX-PRE','INS-AVE',200],['MIX-PRE','INS-CAJ',200],['MIX-PRE','INS-PAS',100],
+  ].map(r=>({producto_id:r[0],insumo_id:r[1],gramos:r[2]}))
+};
+function demoDB(){
+  let db=JSON.parse(localStorage.getItem('nr_demo2')||'null');
+  if(!db){ db={clientes:[],ordenes:[],gastos:[],insumos:JSON.parse(JSON.stringify(SEED.insumos))}; demoSave(db); }
+  return db;
+}
+function demoSave(db){ localStorage.setItem('nr_demo2',JSON.stringify(db)); }
+function demoCostoBase(pid){
+  return SEED.recetas.filter(r=>r.producto_id===pid).reduce((s,r)=>{
+    const i=demoDB().insumos.find(x=>x.id===r.insumo_id);
+    return s+(i? (r.gramos/1000)*i.costo_por_kg : 0);
+  },0);
+}
+function demoApi(action,d){
+  const db=demoDB();
+  const rid=p=>p+'-'+Math.random().toString(36).slice(2,8).toUpperCase();
+  if(action==='products') return {ok:true, products:SEED.productos};
+  if(action==='register'){
+    if(!d.ciudad||!d.comuna||!d.calle||!d.numero) return {ok:false,error:'Completa tu dirección: ciudad, comuna, calle y número'};
+    if(db.clientes.find(c=>c.email===d.email.toLowerCase())) return {ok:false,error:'Ya existe una cuenta con ese email'};
+    const c={id:rid('CLI'),nombre:d.nombre,email:d.email.toLowerCase(),pass:d.pass,telefono:d.telefono,ciudad:d.ciudad,comuna:d.comuna,calle:d.calle,numero:d.numero,token:rid('TK')};
+    db.clientes.push(c); demoSave(db);
+    return {ok:true,session:{token:c.token,nombre:c.nombre,email:c.email,telefono:c.telefono,ciudad:c.ciudad,comuna:c.comuna,calle:c.calle,numero:c.numero}};
+  }
+  if(action==='login'){
+    const c=db.clientes.find(c=>c.email===d.email.toLowerCase()&&c.pass===d.pass);
+    return c? {ok:true,session:{token:c.token,nombre:c.nombre,email:c.email,telefono:c.telefono,ciudad:c.ciudad,comuna:c.comuna,calle:c.calle,numero:c.numero}} : {ok:false,error:'Email o contraseña incorrectos'};
+  }
+  const cli=db.clientes.find(c=>c.token===d.token);
+  if(action==='createOrder'){
+    if(!cli) return {ok:false,error:'Sesión inválida'};
+    let subtotal=0,costo=0;
+    const items=d.items.map(it=>{
+      const p=SEED.productos.find(x=>x.id===it.id);
+      const f=p.formatos.find(f=>f.peso_g===Number(it.peso_g))||{peso_g:p.peso_g,precio:p.precio};
+      subtotal+=f.precio*it.qty; costo+=demoCostoBase(p.id)*(f.peso_g/p.peso_g)*it.qty;
+      return {id:p.id,nombre:p.nombre,peso_g:f.peso_g,precio:f.precio,qty:it.qty};
+    });
+    const dir=d.direccion||{};
+    const comuna=dir.comuna||cli.comuna;
+    const descuento=Math.round(subtotal*DESCUENTO_CLIENTE);
+    const base=subtotal-descuento;
+    const despacho=(String(comuna).toLowerCase()===COMUNA_GRATIS.toLowerCase()||base>=DESPACHO_GRATIS_DESDE)?0:RECARGO_RM;
+    const o={id:rid('ORD'),fecha:new Date().toISOString(),cliente_id:cli.id,cliente:cli.nombre,telefono:d.telefono||cli.telefono,
+      ciudad:dir.ciudad||cli.ciudad,comuna,calle:dir.calle||cli.calle,numero:dir.numero||cli.numero,
+      items,subtotal,descuento,despacho,total:base+despacho,costo:Math.round(costo),
+      metodo_pago:d.metodoPago,notas:d.notas||'',estado:'Recibido',desc:false};
+    db.ordenes.unshift(o); demoSave(db);
+    return {ok:true,orderId:o.id,subtotal,descuento,despacho,total:o.total};
+  }
+  if(action==='myOrders'){
+    if(!cli) return {ok:false,error:'Sesión inválida'};
+    return {ok:true,orders:db.ordenes.filter(o=>o.cliente_id===cli.id)};
+  }
+  if(action==='adminData'){
+    if(d.adminKey!=='demo') return {ok:false,error:'En modo demo la clave es: demo'};
+    const val=db.ordenes.filter(o=>o.estado!=='Cancelado');
+    const ventas=val.reduce((s,o)=>s+o.total,0), costoV=val.reduce((s,o)=>s+o.costo,0),
+          desc=val.reduce((s,o)=>s+o.descuento,0), g=db.gastos.reduce((s,x)=>s+x.monto,0);
+    return {ok:true,ordenes:db.ordenes,insumos:db.insumos,gastos:db.gastos,
+      resumen:{ventas,costoVentas:costoV,descuentos:desc,gastos:g,margenBruto:ventas-costoV,utilidad:ventas-costoV-g,numOrdenes:val.length}};
+  }
+  if(action==='setOrderStatus'){
+    if(d.adminKey!=='demo') return {ok:false,error:'Clave incorrecta'};
+    const o=db.ordenes.find(x=>x.id===d.orderId); o.estado=d.estado;
+    if(d.estado==='Confirmado'&&!o.desc){
+      o.items.forEach(it=>{
+        const p=SEED.productos.find(x=>x.id===it.id);
+        const factor=it.peso_g/p.peso_g;
+        SEED.recetas.filter(r=>r.producto_id===it.id).forEach(r=>{
+          const i=db.insumos.find(x=>x.id===r.insumo_id);
+          if(i) i.stock_kg=Math.round((i.stock_kg-(r.gramos/1000)*factor*it.qty)*1000)/1000;
+        });
+      }); o.desc=true;
+    }
+    demoSave(db); return {ok:true};
+  }
+  if(action==='saveInsumo'){
+    if(d.adminKey!=='demo') return {ok:false,error:'Clave incorrecta'};
+    const i=db.insumos.find(x=>x.id===d.id);
+    if(d.stock_kg!==undefined)i.stock_kg=Number(d.stock_kg);
+    if(d.costo_por_kg!==undefined)i.costo_por_kg=Number(d.costo_por_kg);
+    demoSave(db); return {ok:true};
+  }
+  if(action==='addGasto'){
+    if(d.adminKey!=='demo') return {ok:false,error:'Clave incorrecta'};
+    db.gastos.unshift({id:rid('GTO'),fecha:new Date().toISOString(),categoria:d.categoria,descripcion:d.descripcion,monto:Number(d.monto)});
+    demoSave(db); return {ok:true};
+  }
+  return {ok:false,error:'Acción desconocida'};
+}
+
+/* ══════════════════════ RUTAS / VISTAS ══════════════════════ */
+function ir(v){ location.hash='#/'+v; }
+window.addEventListener('hashchange', render);
+
+async function render(){
+  cerrarModal();
+  const v=(location.hash.replace('#/','')||'inicio');
+  document.querySelectorAll('nav button[data-v]').forEach(b=>b.classList.toggle('activo',b.dataset.v===v));
+  const M=$('#vista');
+  if(v==='inicio')  return vInicio(M);
+  if(v==='tienda')  return vTienda(M);
+  if(v==='carrito') return vCarrito(M);
+  if(v==='checkout')return vCheckout(M);
+  if(v==='pedidos') return vPedidos(M);
+  if(v==='cuenta')  return vCuenta(M);
+  if(v==='admin')   return vAdmin(M);
+  vInicio(M);
+}
+
+/* ---------- INICIO (landing) ---------- */
+function vInicio(M){
+  M.innerHTML=`
+  <div class="heroBanner">
+    <img src="img/hero.jpg" alt="Mix de frutos secos NutriRaíz">
+    <div class="velo">
+      <h1>Mixes nutritivos, naturales y deliciosos</h1>
+      <span class="script">para tu día a día.</span>
+      <div><button class="btn crema" onclick="ir('tienda')">Ver los mixes →</button></div>
+    </div>
+  </div>
+
+  <div class="cintaClub">
+    <div class="pct">3%</div>
+    <div>
+      <b>Descuento permanente para clientes NutriRaíz</b>
+      <small>Crea tu cuenta gratis y el 3% se aplica automáticamente en todas tus compras. Además: despacho gratis en Macul y en compras desde ${fmt(DESPACHO_GRATIS_DESDE)} en la Región Metropolitana.</small>
+    </div>
+    <button class="btn dorado" onclick="ir(session?'tienda':'cuenta')">${'Quiero mi descuento'}</button>
+  </div>
+
+  <div class="historia">
+    <img src="img/marca.jpg" alt="Envase NutriRaíz">
+    <div>
+      <h2>Más que una compra, un estilo de vida saludable</h2>
+      <p>En NutriRaíz preparamos cada mix con ingredientes seleccionados y mucho cariño: frutos secos, semillas y frutas deshidratadas <b>100% naturales, sin aditivos ni preservantes</b>, en envases sustentables y reciclables.</p>
+      <p>Creemos en el bienestar que se siente y en las elecciones que suman. Para ti, para tu familia, para el planeta.</p>
+      <button class="btn" onclick="ir('tienda')">Conocer los productos</button>
+    </div>
+  </div>
+
+  <div class="beneficios">
+    <div class="beneficio"><span class="ico">🌱</span><b>100% naturales</b><small>Sin aditivos ni conservantes, solo ingredientes de calidad premium.</small></div>
+    <div class="beneficio"><span class="ico">💚</span><b>Bienestar real</b><small>Salud cardiovascular, concentración, sistema inmune y energía sostenida.</small></div>
+    <div class="beneficio"><span class="ico">🚚</span><b>Despacho conveniente</b><small>Gratis en Macul y en compras desde ${fmt(DESPACHO_GRATIS_DESDE)}. Resto de la RM: ${fmt(RECARGO_RM)}.</small></div>
+    <div class="beneficio"><span class="ico">📦</span><b>Envases conscientes</b><small>Sustentables, reciclables y responsables con el medio ambiente.</small></div>
+  </div>`;
+}
+
+/* ---------- TIENDA ---------- */
+async function vTienda(M){
+  M.innerHTML=`
+    <div class="hero">
+      <h1>Nuestros mixes</h1><span class="script">elige el tuyo, toca para ver más.</span>
+      ${API_URL?'':'<span class="badge-demo">MODO DEMO</span>'}
+    </div>
+    <div class="grid" id="gridProd">Cargando productos…</div>`;
+  if(!PRODUCTS.length){ const r=await api('products'); PRODUCTS=r.products||[]; }
+  $('#gridProd').innerHTML=PRODUCTS.map(p=>`
+    <div class="card" onclick="verDetalle('${p.id}')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')verDetalle('${p.id}')">
+      <div class="foto"><img src="${p.imagen}" alt="${p.nombre}" loading="lazy"><span class="chip ${CHIPS[p.etiqueta]||'verde'}">${p.etiqueta}</span></div>
+      <h3>${p.nombre}</h3>
+      <div class="desc">${p.descripcion}</div>
+      <div class="pie">
+        <div><div class="precio">${fmt(p.precio)}</div><div class="peso">${pesoTxt(p.peso_g)} · desde ${fmt(Math.min(...p.formatos.map(f=>f.precio)))}</div></div>
+        <button class="btn mini" onclick="event.stopPropagation();verDetalle('${p.id}')">Ver más</button>
+      </div>
+    </div>`).join('');
+}
+
+/* ---------- DETALLE (modal) ---------- */
+function verDetalle(id){
+  const p=PRODUCTS.find(x=>x.id===id); if(!p) return;
+  const m=document.createElement('div'); m.id='modal';
+  m.innerHTML=`<div class="caja">
+    <button class="cerrar" onclick="cerrarModal()" aria-label="Cerrar">✕</button>
+    <div class="foto"><img src="${p.imagen}" alt="${p.nombre}"></div>
+    <div class="cuerpo">
+      <span class="chip ${CHIPS[p.etiqueta]||'verde'}" style="position:static;display:inline-block;margin-bottom:8px">${p.etiqueta}</span>
+      <h2>${p.nombre}</h2>
+      <p class="nota" style="margin:6px 0 4px">${p.descripcion}</p>
+      <p style="font-size:.88rem;color:var(--nuez)">${p.contenido}</p>
+      <div class="bondad" style="margin-top:12px">🌿 ${p.bondades}</div>
+      <div class="fichas">
+        <div class="ficha"><small>Rinde para</small><b>${p.rendimiento}</b></div>
+        <div class="ficha"><small>Ideal para</small><b>${p.orientado}</b></div>
+        <div class="ficha"><small>Consumo diario sugerido</small><b>${p.porcion}</b></div>
+        <div class="ficha"><small>Cuánto es 20 g</small><b>1 puñado pequeño (palma de tu mano)</b></div>
+      </div>
+      <h3 style="color:var(--verde-osc);margin:6px 0 10px">Formatos disponibles</h3>
+      ${p.formatos.map(f=>`
+        <div class="formato">
+          <div><b>${pesoTxt(f.peso_g)}</b><small>${fmt(Math.round(f.precio/(f.peso_g/1000)))} por kilo</small></div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <span class="precio">${fmt(f.precio)}</span>
+            <button class="btn mini" onclick="addCart('${p.id}',${f.peso_g})">Agregar</button>
+          </div>
+        </div>`).join('')}
+      <p class="nota" style="margin-top:10px">💡 Clientes registrados obtienen <b>3% de descuento</b> en el total.</p>
+    </div>
+  </div>`;
+  m.addEventListener('click',e=>{ if(e.target===m) cerrarModal(); });
+  document.body.appendChild(m);
+}
+function cerrarModal(){ const m=$('#modal'); if(m) m.remove(); }
+
+function addCart(id, peso){
+  const p=PRODUCTS.find(x=>x.id===id);
+  const f=p.formatos.find(f=>f.peso_g===peso)||{peso_g:p.peso_g,precio:p.precio};
+  const key=id+'|'+f.peso_g;
+  const it=cart.find(x=>x.key===key);
+  it? it.qty++ : cart.push({key, id:p.id, nombre:p.nombre, peso_g:f.peso_g, precio:f.precio, qty:1});
+  saveCart(); toast(`${p.nombre} ${pesoTxt(f.peso_g)} agregado 🧺`);
+}
+
+/* ---------- CARRITO ---------- */
+function vCarrito(M){
+  if(!cart.length){ M.innerHTML='<div class="panel"><h2>Tu carrito</h2><p class="nota">Aún no agregas productos. Explora la tienda y elige tus mixes favoritos.</p><br><button class="btn" onclick="ir(\'tienda\')">Ver mixes</button></div>'; return; }
+  const c=calcCarrito(session?session.comuna:'');
+  M.innerHTML=`<div class="panel"><h2>Tu carrito</h2>
+    ${cart.map((i,x)=>`
+      <div class="item-carrito">
+        <span class="nom">${i.nombre} · ${pesoTxt(i.peso_g)}<br><small class="nota">${fmt(i.precio)} c/u</small></span>
+        <span class="qtyC"><button onclick="qty(${x},-1)">−</button><b>${i.qty}</b><button onclick="qty(${x},1)">+</button></span>
+        <b>${fmt(i.precio*i.qty)}</b>
+      </div>`).join('')}
+    <div class="desglose">
+      <div><span>Subtotal</span><span>${fmt(c.subtotal)}</span></div>
+      ${session? `<div class="dcto"><span>Descuento cliente (3%)</span><span>−${fmt(c.descuento)}</span></div>`
+               : `<div class="nota"><span>💡 Regístrate y obtén 3% de descuento</span></div>`}
+      <div class="tot"><span>Total estimado</span><span>${fmt(c.subtotal-c.descuento)}</span></div>
+    </div>
+    <p class="nota" style="margin-top:8px">El despacho se calcula en el siguiente paso según tu comuna: gratis en ${COMUNA_GRATIS} y en compras desde ${fmt(DESPACHO_GRATIS_DESDE)}.</p><br>
+    <button class="btn" style="width:100%" onclick="ir('checkout')">Continuar con el pedido</button>
+  </div>`;
+}
+function qty(x,d){ cart[x].qty+=d; if(cart[x].qty<1)cart.splice(x,1); saveCart(); render(); }
+
+/* ---------- CHECKOUT ---------- */
+let editandoDir=false;
+function vCheckout(M){
+  if(!cart.length) return ir('tienda');
+  if(!session){ toast('Inicia sesión o crea tu cuenta: además obtienes 3% de descuento'); return ir('cuenta'); }
+  editandoDir=false;
+  pintaCheckout(M);
+}
+function pintaCheckout(M){
+  const dir=dirActual();
+  const c=calcCarrito(dir.comuna);
+  M.innerHTML=`<div class="panel"><h2>Completar pedido</h2>
+
+    <div class="campo"><label>Dirección de despacho</label>
+      <div class="dirBox ${editandoDir?'oculto':''}" id="dirResumen">
+        <span>📍 ${dir.calle} ${dir.numero}, ${dir.comuna}, ${dir.ciudad}</span>
+        <button class="btn secundario mini" onclick="editandoDir=true;pintaCheckout($('#vista'))">Editar</button>
+      </div>
+      <div id="dirEdit" class="${editandoDir?'':'oculto'}">
+        <div class="fila">
+          <div class="campo"><label>Ciudad</label><select id="ckCiudad">${opts(CIUDADES_RM,dir.ciudad)}</select></div>
+          <div class="campo"><label>Comuna</label><select id="ckComuna" onchange="pintaDesglose()">${opts(COMUNAS_RM,dir.comuna)}</select></div>
+        </div>
+        <div class="fila">
+          <div class="campo" style="flex:2"><label>Calle</label><input id="ckCalle" value="${dir.calle||''}"></div>
+          <div class="campo"><label>Número</label><input id="ckNumero" value="${dir.numero||''}"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="campo"><label>Teléfono de contacto</label><input id="chTel" value="${session.telefono||''}" placeholder="+56 9 …"></div>
+
+    <div class="campo"><label>Método de pago</label>
+      <div class="radio-pago">
+        <label><input type="radio" name="pago" value="Transferencia" checked onchange="$('#datosBanco').classList.remove('oculto')">Transferencia bancaria</label>
+        <label><input type="radio" name="pago" value="Contra entrega" onchange="$('#datosBanco').classList.add('oculto')">Pago contra entrega</label>
+      </div>
+      <div id="datosBanco" class="banco">
+        <b>Datos para transferir</b><br>
+        ${BANCO.titular} · RUT ${BANCO.rut}<br>${BANCO.banco} · ${BANCO.tipo} N° ${BANCO.numero}<br>
+        Enviar comprobante a <b>${BANCO.email}</b> o por WhatsApp.
+      </div>
+    </div>
+
+    <div class="campo"><label>Notas (opcional)</label><textarea id="chNotas" rows="2" placeholder="Horario preferido, referencias…"></textarea></div>
+
+    <div class="desglose" id="desglose"></div>
+    <br><button class="btn" style="width:100%" id="btnConfirmar" onclick="confirmarPedido()">Confirmar pedido</button>
+  </div>`;
+  pintaDesglose();
+}
+function dirActual(){
+  if(editandoDir && $('#ckComuna')){
+    return {ciudad:$('#ckCiudad').value, comuna:$('#ckComuna').value, calle:$('#ckCalle').value, numero:$('#ckNumero').value};
+  }
+  return {ciudad:session.ciudad, comuna:session.comuna, calle:session.calle, numero:session.numero};
+}
+function pintaDesglose(){
+  const comuna = editandoDir && $('#ckComuna') ? $('#ckComuna').value : session.comuna;
+  const c=calcCarrito(comuna);
+  $('#desglose').innerHTML=`
+    <div><span>Subtotal</span><span>${fmt(c.subtotal)}</span></div>
+    <div class="dcto"><span>Descuento cliente (3%)</span><span>−${fmt(c.descuento)}</span></div>
+    <div><span>Despacho (${comuna})</span><span>${c.despacho===0?'<b style="color:var(--ok)">Gratis</b>':fmt(c.despacho)}</span></div>
+    <div class="tot"><span>Total</span><span>${fmt(c.total)}</span></div>
+    ${c.despacho>0? `<div class="nota"><span>Te faltan ${fmt(DESPACHO_GRATIS_DESDE-(c.subtotal-c.descuento))} para despacho gratis 🚚</span></div>`:''}`;
+}
+async function confirmarPedido(){
+  const tel=$('#chTel').value.trim();
+  const dir=dirActual();
+  if(!tel) return toast('Ingresa un teléfono de contacto',true);
+  if(!dir.calle||!dir.numero||!dir.comuna) return toast('Completa la dirección de despacho',true);
+  const metodo=document.querySelector('input[name=pago]:checked').value;
+  const B=$('#btnConfirmar'); B.disabled=true; B.textContent='Enviando…';
+  const r=await api('createOrder',{token:session.token,
+    items:cart.map(i=>({id:i.id,peso_g:i.peso_g,qty:i.qty})),
+    telefono:tel, direccion:dir, metodoPago:metodo, notas:$('#chNotas').value});
+  if(!r.ok){ toast(r.error,true); B.disabled=false; B.textContent='Confirmar pedido'; return; }
+  const resumen=cart.map(i=>`• ${i.qty}x ${i.nombre} ${pesoTxt(i.peso_g)}`).join('%0A');
+  cart=[]; saveCart();
+  toast('¡Pedido '+r.orderId+' recibido! 🌿');
+  const msg=`Hola NutriRaíz 🌿 Acabo de hacer el pedido *${r.orderId}*%0A${resumen}%0ASubtotal: ${fmt(r.subtotal)} · Dcto 3%: -${fmt(r.descuento)} · Despacho: ${r.despacho===0?'Gratis':fmt(r.despacho)}%0A*Total: ${fmt(r.total)}*%0APago: ${metodo}%0AEntrega: ${dir.calle} ${dir.numero}, ${dir.comuna}`;
+  window.open('https://wa.me/'+WHATSAPP+'?text='+msg,'_blank');
+  ir('pedidos');
+}
+
+/* ---------- MIS PEDIDOS ---------- */
+async function vPedidos(M){
+  if(!session){ M.innerHTML='<div class="panel"><h2>Mis pedidos</h2><p class="nota">Inicia sesión para ver el historial y estado de tus pedidos.</p><br><button class="btn" onclick="ir(\'cuenta\')">Ingresar</button></div>'; return; }
+  M.innerHTML='<div class="hero"><h1>Mis pedidos</h1></div><div id="listaOrd">Cargando…</div>';
+  const r=await api('myOrders',{token:session.token});
+  if(!r.ok){ setSession(null); return vPedidos(M); }
+  if(!r.orders.length){ $('#listaOrd').innerHTML='<div class="panel"><p class="nota">Todavía no tienes pedidos. Tu primer mix te espera en la tienda.</p><br><button class="btn" onclick="ir(\'tienda\')">Ir a la tienda</button></div>'; return; }
+  $('#listaOrd').innerHTML=r.orders.map(o=>ordenHTML(o,false)).join('');
+}
+function ordenHTML(o,admin){
+  const idx=ESTADOS.indexOf(o.estado);
+  const rama=o.estado==='Cancelado'? '<p class="nota" style="margin-top:10px">Pedido cancelado.</p>' : `
+    <div class="rama">${ESTADOS.map((e,i)=>`
+      ${i>0?`<div class="tallo ${i<=idx?'hecho':''}"></div>`:''}
+      <div class="hoja ${i<=idx?'hecho':''}" title="${e}"></div>`).join('')}
+    </div>
+    <div class="rama-txt">${ESTADOS.map(e=>`<span>${e}</span>`).join('')}</div>`;
+  const desglose=`${fmt(o.subtotal)} − 3% + despacho ${o.despacho===0?'gratis':fmt(o.despacho)} = <b>${fmt(o.total)}</b>`;
+  return `<div class="orden">
+    <div class="cab">
+      <span><b>${o.id}</b> · ${fmtF(o.fecha)}${admin?` · ${o.cliente||''} · ${o.telefono||''}`:''}</span>
+      <span class="estado-pill ${o.estado==='Cancelado'?'Cancelado':''}">${o.estado}</span>
+    </div>
+    <p class="nota" style="margin-top:6px">${(o.items||[]).map(i=>`${i.qty}× ${i.nombre} ${pesoTxt(i.peso_g)}`).join(' · ')}<br>${desglose} (${o.metodo_pago})
+    ${admin? `<br>📍 ${o.calle||''} ${o.numero||''}, ${o.comuna||''}, ${o.ciudad||''}${o.notas?'<br>📝 '+o.notas:''}` : ''}</p>
+    ${rama}
+    ${admin? `<div style="margin-top:12px;display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      <select onchange="cambiarEstado('${o.id}',this.value)">
+        ${[...ESTADOS,'Cancelado'].map(e=>`<option ${e===o.estado?'selected':''}>${e}</option>`).join('')}
+      </select>
+      <span class="nota">Margen de esta venta: <b>${fmt(o.total-o.despacho-o.costo)}</b></span>
+    </div>`:''}
+  </div>`;
+}
+
+/* ---------- CUENTA ---------- */
+function vCuenta(M){
+  if(session){
+    M.innerHTML=`<div class="panel"><h2>Hola, ${session.nombre} 🌿</h2>
+      <p class="nota">Sesión iniciada con ${session.email}.<br>📍 ${session.calle} ${session.numero}, ${session.comuna}, ${session.ciudad}<br>Tu descuento del <b>3%</b> se aplica automáticamente en cada compra.</p><br>
+      <div class="fila">
+        <button class="btn" onclick="ir('pedidos')">Ver mis pedidos</button>
+        <button class="btn secundario" onclick="setSession(null);render();toast('Sesión cerrada')">Cerrar sesión</button>
+      </div></div>`;
+    return;
+  }
+  M.innerHTML=`<div class="panel"><h2>Ingresar</h2>
+    <div class="campo"><label>Email</label><input id="lgEmail" type="email" autocomplete="email"></div>
+    <div class="campo"><label>Contraseña</label><input id="lgPass" type="password" autocomplete="current-password"></div>
+    <button class="btn" style="width:100%" onclick="hacerLogin()">Ingresar</button>
+    <br><br><p class="nota" style="text-align:center">¿Primera vez? <a href="#" onclick="vRegistro();return false"><b>Crea tu cuenta y obtén 3% de descuento</b></a></p>
+  </div>`;
+}
+function vRegistro(){
+  $('#vista').innerHTML=`<div class="panel"><h2>Crear cuenta</h2>
+    <p class="nota" style="margin-bottom:12px">🌿 Al registrarte obtienes <b>3% de descuento permanente</b> en todas tus compras.</p>
+    <div class="campo"><label>Nombre completo</label><input id="rgNom"></div>
+    <div class="fila">
+      <div class="campo"><label>Email</label><input id="rgEmail" type="email"></div>
+      <div class="campo"><label>Teléfono</label><input id="rgTel" placeholder="+56 9 …"></div>
+    </div>
+    <div class="fila">
+      <div class="campo"><label>Ciudad</label><select id="rgCiudad">${opts(CIUDADES_RM,'Santiago')}</select></div>
+      <div class="campo"><label>Comuna</label><select id="rgComuna">${opts(COMUNAS_RM,'Macul')}</select></div>
+    </div>
+    <div class="fila">
+      <div class="campo" style="flex:2"><label>Calle</label><input id="rgCalle"></div>
+      <div class="campo"><label>Número</label><input id="rgNumero"></div>
+    </div>
+    <div class="campo"><label>Contraseña</label><input id="rgPass" type="password" autocomplete="new-password"></div>
+    <button class="btn" style="width:100%" onclick="hacerRegistro()">Crear cuenta</button>
+    <br><br><p class="nota" style="text-align:center">¿Ya tienes cuenta? <a href="#" onclick="vCuenta($('#vista'));return false"><b>Ingresa aquí</b></a></p>
+  </div>`;
+}
+async function hacerLogin(){
+  const r=await api('login',{email:$('#lgEmail').value.trim(),pass:$('#lgPass').value});
+  if(!r.ok) return toast(r.error,true);
+  setSession(r.session); toast('¡Bienvenido/a de vuelta, '+r.session.nombre.split(' ')[0]+'! Tu 3% está activo 🌿');
+  ir(cart.length?'checkout':'tienda');
+}
+async function hacerRegistro(){
+  const d={nombre:$('#rgNom').value.trim(),email:$('#rgEmail').value.trim(),telefono:$('#rgTel').value.trim(),
+    ciudad:$('#rgCiudad').value,comuna:$('#rgComuna').value,calle:$('#rgCalle').value.trim(),numero:$('#rgNumero').value.trim(),
+    pass:$('#rgPass').value};
+  if(!d.nombre||!d.email||!d.pass) return toast('Nombre, email y contraseña son obligatorios',true);
+  if(!d.calle||!d.numero) return toast('Completa tu dirección: calle y número',true);
+  const r=await api('register',d);
+  if(!r.ok) return toast(r.error,true);
+  setSession(r.session); toast('¡Cuenta creada! Tu 3% de descuento ya está activo 🌿');
+  ir(cart.length?'checkout':'tienda');
+}
+
+/* ---------- ADMIN ---------- */
+let adminKey=sessionStorage.getItem('nr_admin')||'';
+let adminTab='resumen';
+let AD=null;
+
+async function vAdmin(M){
+  if(!adminKey){
+    M.innerHTML=`<div class="panel"><h2>Administración</h2>
+      <div class="campo"><label>Clave de administración</label><input id="adKey" type="password" ${!API_URL?'placeholder="En modo demo la clave es: demo"':''}></div>
+      <button class="btn" style="width:100%" onclick="adminLogin()">Entrar</button></div>`;
+    return;
+  }
+  M.innerHTML=`<div class="hero"><h1>Panel NutriRaíz</h1>${API_URL?'':'<span class="badge-demo">MODO DEMO</span>'}</div>
+    <div class="tabs">${['resumen','órdenes','insumos','gastos','qr'].map(t=>`<button class="${t===adminTab?'activo':''}" onclick="adminTab='${t}';vAdmin($('#vista'))">${t[0].toUpperCase()+t.slice(1)}</button>`).join('')}
+    <button style="margin-left:auto" onclick="adminKey='';sessionStorage.removeItem('nr_admin');render()">Salir</button></div>
+    <div id="adCont">Cargando…</div>`;
+  const r=await api('adminData',{adminKey});
+  if(!r.ok){ adminKey=''; sessionStorage.removeItem('nr_admin'); toast(r.error,true); return vAdmin(M); }
+  AD=r;
+  const C=$('#adCont');
+  if(adminTab==='resumen') return adResumen(C);
+  if(adminTab==='órdenes') return adOrdenes(C);
+  if(adminTab==='insumos') return adInsumos(C);
+  if(adminTab==='gastos')  return adGastos(C);
+  if(adminTab==='qr')      return adQR(C);
+}
+async function adminLogin(){
+  adminKey=$('#adKey').value.trim();
+  const r=await api('adminData',{adminKey});
+  if(!r.ok){ adminKey=''; return toast(r.error,true); }
+  sessionStorage.setItem('nr_admin',adminKey);
+  vAdmin($('#vista'));
+}
+
+function adResumen(C){
+  const R=AD.resumen;
+  const margenPct=R.ventas? Math.round(R.margenBruto/R.ventas*100):0;
+  const porProd={};
+  AD.ordenes.filter(o=>o.estado!=='Cancelado').forEach(o=>(o.items||[]).forEach(i=>{
+    const k=i.nombre+' '+pesoTxt(i.peso_g);
+    porProd[k]=porProd[k]||{qty:0,monto:0}; porProd[k].qty+=i.qty; porProd[k].monto+=i.precio*i.qty;
+  }));
+  C.innerHTML=`
+    <div class="kpis">
+      <div class="kpi"><small>Ventas</small><b>${fmt(R.ventas)}</b></div>
+      <div class="kpi"><small>Costo insumos</small><b>${fmt(R.costoVentas)}</b></div>
+      <div class="kpi"><small>Margen bruto</small><b>${fmt(R.margenBruto)} (${margenPct}%)</b></div>
+      <div class="kpi"><small>Dctos. otorgados</small><b>${fmt(R.descuentos)}</b></div>
+      <div class="kpi"><small>Gastos</small><b>${fmt(R.gastos)}</b></div>
+      <div class="kpi destacado"><small>Utilidad</small><b>${fmt(R.utilidad)}</b></div>
+      <div class="kpi"><small>Órdenes</small><b>${R.numOrdenes}</b></div>
+    </div>
+    <h3 style="margin-bottom:10px;color:var(--verde-osc)">Ventas por mix y formato</h3>
+    <div class="tabla-scroll"><table>
+      <tr><th>Producto</th><th>Unidades</th><th>Monto</th></tr>
+      ${Object.keys(porProd).length? Object.entries(porProd).map(([n,v])=>`<tr><td>${n}</td><td>${v.qty}</td><td>${fmt(v.monto)}</td></tr>`).join('') : '<tr><td colspan="3" class="nota">Aún no hay ventas registradas.</td></tr>'}
+    </table></div>
+    <p class="nota" style="margin-top:12px">El costo de cada venta se congela al momento del pedido con la receta del mix y el costo por kilo vigente de cada insumo.</p>`;
+}
+
+function adOrdenes(C){
+  C.innerHTML=AD.ordenes.length? AD.ordenes.map(o=>ordenHTML(o,true)).join('') : '<div class="panel"><p class="nota">No hay órdenes todavía. Comparte el QR con tus clientes para recibir la primera.</p></div>';
+}
+async function cambiarEstado(id,estado){
+  const r=await api('setOrderStatus',{adminKey,orderId:id,estado});
+  r.ok? toast('Orden '+id+' → '+estado+(estado==='Confirmado'?' · stock descontado':'')) : toast(r.error,true);
+  vAdmin($('#vista'));
+}
+
+function adInsumos(C){
+  C.innerHTML=`<div class="tabla-scroll"><table>
+    <tr><th>Insumo</th><th>Stock (kg)</th><th>Costo por kg ($)</th><th></th></tr>
+    ${AD.insumos.map(i=>`<tr>
+      <td>${i.nombre}${i.stock_kg<=i.stock_minimo_kg?' <span class="stock-bajo">⚠ bajo</span>':''}</td>
+      <td><input type="number" step="0.1" id="st-${i.id}" value="${Math.round(i.stock_kg*100)/100}" class="${i.stock_kg<=i.stock_minimo_kg?'stock-bajo':''}"></td>
+      <td><input type="number" step="100" id="co-${i.id}" value="${i.costo_por_kg}"></td>
+      <td><button class="btn mini" onclick="guardarInsumo('${i.id}')">Guardar</button></td>
+    </tr>`).join('')}
+  </table></div>
+  <p class="nota" style="margin-top:12px">Todo en <b>kilos</b>. ⚠ indica stock bajo el mínimo. El stock se descuenta automáticamente al <b>confirmar</b> una orden según la receta y el formato vendido.</p>`;
+}
+async function guardarInsumo(id){
+  const r=await api('saveInsumo',{adminKey,id,stock_kg:$('#st-'+id).value,costo_por_kg:$('#co-'+id).value});
+  r.ok? toast('Insumo actualizado') : toast(r.error,true);
+  vAdmin($('#vista'));
+}
+
+function adGastos(C){
+  C.innerHTML=`<div class="panel ancho" style="margin-bottom:16px">
+    <h3 style="color:var(--verde-osc);margin-bottom:10px">Registrar gasto</h3>
+    <div class="fila">
+      <div class="campo"><label>Categoría</label>
+        <select id="gtCat"><option>Insumos</option><option>Envases</option><option>Despacho</option><option>Marketing</option><option>Otros</option></select></div>
+      <div class="campo"><label>Descripción</label><input id="gtDesc" placeholder="Ej: 5 kg almendras proveedor X"></div>
+      <div class="campo"><label>Monto ($)</label><input id="gtMonto" type="number"></div>
+    </div>
+    <button class="btn" onclick="agregarGasto()">Agregar gasto</button>
+  </div>
+  <div class="tabla-scroll"><table>
+    <tr><th>Fecha</th><th>Categoría</th><th>Descripción</th><th>Monto</th></tr>
+    ${AD.gastos.length? AD.gastos.map(g=>`<tr><td>${fmtF(g.fecha)}</td><td>${g.categoria}</td><td>${g.descripcion}</td><td>${fmt(g.monto)}</td></tr>`).join('') : '<tr><td colspan="4" class="nota">Sin gastos registrados.</td></tr>'}
+  </table></div>`;
+}
+async function agregarGasto(){
+  const monto=$('#gtMonto').value;
+  if(!monto) return toast('Ingresa el monto del gasto',true);
+  const r=await api('addGasto',{adminKey,categoria:$('#gtCat').value,descripcion:$('#gtDesc').value,monto});
+  r.ok? toast('Gasto registrado') : toast(r.error,true);
+  vAdmin($('#vista'));
+}
+
+function adQR(C){
+  const url=location.origin+location.pathname;
+  C.innerHTML=`<div class="panel"><h2>QR de la tienda</h2>
+    <p class="nota">Este código lleva a los clientes directo a la página de la marca. Úsalo en el flyer, los envases y redes sociales.</p>
+    <div id="qrCaja"><div id="qrCanvas"></div>
+      <input value="${url}" readonly onclick="this.select()">
+      <button class="btn dorado" onclick="descargarQR()">Descargar QR (PNG)</button>
+    </div></div>`;
+  new QRCode(document.getElementById('qrCanvas'),{text:url,width:220,height:220,colorDark:'#2F5233',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});
+}
+function descargarQR(){
+  const img=$('#qrCanvas img')||$('#qrCanvas canvas');
+  const a=document.createElement('a');
+  a.href=img.tagName==='IMG'? img.src : img.toDataURL('image/png');
+  a.download='nutriraiz-qr.png'; a.click();
+}
+
+/* ---------- INICIO ---------- */
+$('#ftWsp').textContent='+'+WHATSAPP.replace(/^(\d{2})(\d)(\d{4})(\d{4})$/,'$1 $2 $3 $4');
+setSession(session); pintaCarritoN(); render();
+</script>
+</body>
+</html>
